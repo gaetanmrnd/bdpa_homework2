@@ -16,12 +16,12 @@ public class WordCount {
         
  public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
     private final static IntWritable one = new IntWritable(1);
-    private Text word = new Text();
         
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String line = value.toString();
         String[] words = line.split("[^A-Za-z0-9]");
         for (String word : words) {
+            word = word.toLowerCase();
             if (word.isEmpty()) {
                 continue;
             }
